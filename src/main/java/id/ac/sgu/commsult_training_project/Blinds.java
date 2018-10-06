@@ -1,16 +1,14 @@
 package id.ac.sgu.commsult_training_project;
 
-public class Blinds{
+public class Blinds {
 	private boolean isUp;
 
 	public void setStatus(boolean status) {
-		// TODO Auto-generated method stub
 		isUp = status;
 	}
 
 	public Object getStatus() {
 		return isUp;
-		// TODO Auto-generated method stub
 	}
-	
+
 }
