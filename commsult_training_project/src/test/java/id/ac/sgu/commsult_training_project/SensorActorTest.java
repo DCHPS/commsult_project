@@ -14,7 +14,7 @@ public class SensorActorTest {
 		controller.blindController(blinds);
 		controller.temperatureController(tempSensor);
 		controller.airConController(airCon);
-		
+	
 		controller.updateBlinds();
 		controller.updateAirCon();
 		
