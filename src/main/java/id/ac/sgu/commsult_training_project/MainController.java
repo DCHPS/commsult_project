@@ -3,65 +3,51 @@ package id.ac.sgu.commsult_training_project;
 public class MainController {
 	private Sensor timeSensor;
 	private Sensor tempSensor;
-	
+
 	private Blinds blinds;
 	private AirCon airCon;
-	
-	public void timeController(TimeSensor timeSensor)
-	{
+
+	public void timeController(TimeSensor timeSensor) {
 		this.timeSensor = timeSensor;
 	}
-	
-	public void blindController(Blinds blinds)
-	{
+
+	public void blindController(Blinds blinds) {
 		this.blinds = blinds;
 	}
-	
-	public void temperatureController(TemperatureSensor tempSensor)
-	{
+
+	public void temperatureController(TemperatureSensor tempSensor) {
 		this.tempSensor = tempSensor;
 	}
-	
-	public void airConController(AirCon airCon)
-	{
+
+	public void airConController(AirCon airCon) {
 		this.airCon = airCon;
 	}
-	
-	public void updateBlinds()
-	{
+
+	public void updateBlinds() {
 		int time = timeSensor.getValue();
 		boolean blindsIsUp;
-		if(isDay(time))
-		{
+		if (isDay(time)) {
 			blindsIsUp = true;
-		}
-		else
-		{
+		} else {
 			blindsIsUp = false;
 		}
 		blinds.setStatus(blindsIsUp);
-	
+
 	}
-	
-	public void updateAirCon()
-	{
+
+	public void updateAirCon() {
 		int currentTemp = tempSensor.getValue();
 		int setTemp;
-		if(currentTemp <5)
-		{
+		if (currentTemp < 5) {
 			setTemp = 20;
-		}
-		else if(currentTemp > 30)
-		{
+		} else if (currentTemp > 30) {
 			setTemp = 16;
-		}
-		else
-		{
+		} else {
 			setTemp = 18;
 		}
-		
+
 		airCon.setStatus(setTemp);
-		
+
 	}
 
 	public void printStatus() {
@@ -71,9 +57,7 @@ public class MainController {
 	}
 
 	private boolean isDay(int time) {
-		return time >= 600 && time <=1800;
+		return time >= 600 && time <= 1800;
 	}
-	
-	
-	
+
 }
