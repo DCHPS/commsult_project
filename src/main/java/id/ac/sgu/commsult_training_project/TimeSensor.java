@@ -11,7 +11,6 @@ public class TimeSensor extends Sensor {
 	public TimeSensor() {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("HHmm");
 		Date date = new Date();
-		Timer timer = new Timer(true);
 		time = Integer.parseInt(dateFormat.format(date));
 		//timer.scheduleAtFixedRate(new setValueTask(), new Date(), 1000);
 	}
