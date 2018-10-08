@@ -4,15 +4,15 @@ import java.util.*;
 import javax.swing.*;
 
 public class MainClass extends Frame {
-	static JLabel temp = new JLabel();
-	JLabel blind = new JLabel();
+	static JButton temp = new JButton();
+	static JButton blind = new JButton();
 	
 	public MainClass(MainController mc) {
 		JFrame simpleGUI = new JFrame();
 		
 		simpleGUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		simpleGUI.setTitle("AC & Blinds for Days Boii V:");
-		simpleGUI.setSize(300, 250);
+		simpleGUI.setSize(500, 600);
 		simpleGUI.setLocationRelativeTo(null);
 		
 		JPanel simplePanel = new JPanel();
@@ -56,9 +56,11 @@ public class MainClass extends Frame {
 		int currentTemperature = getRandom(100);
 		int currentTime = mc.getCurrentTime();
 		
-		mc.set
+		mc.setTime(currentTime);
+		mc.setTemp(currentTemperature);
 		
-		temp.setText("The AC Temperature is: ");	
+		temp.setText("The AC Temperature is: "+mc.getAirConTemp());
+		blind.setText("The Blinds are up: "+mc.getBlindStatus());
 	}
 	
 	public static int getRandom(int max){
