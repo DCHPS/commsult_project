@@ -12,7 +12,9 @@ public class SensorActorTest {
 		AirCon airCon = new AirCon();
 		TemperatureSensor tempSensor = new TemperatureSensor(15);
 		
-		MainController controller = new MainController(timeSensor,tempSensor,blinds,airCon);
+		Lights lights = new Lights();
+		
+		MainController controller = new MainController(timeSensor,tempSensor,blinds,airCon,lights);
 		
 		//timeSensor.setValue(300);
 		//
