@@ -39,7 +39,8 @@ public class MainClass extends Frame {
 		TemperatureSensor tempSensor = new TemperatureSensor(30);
 		Blinds blind = new Blinds();
 		AirCon airCon = new AirCon();
-		MainController mc = new MainController(timeSensor, tempSensor, blind, airCon);
+		Lights lights = new Lights();
+		MainController mc = new MainController(timeSensor, tempSensor, blind, airCon, lights);
 		
 		MainClass og = new MainClass(mc);
 		
