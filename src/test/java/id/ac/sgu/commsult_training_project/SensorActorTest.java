@@ -17,14 +17,7 @@ public class SensorActorTest {
 		MainController controller = new MainController(timeSensor,tempSensor,blinds,airCon,lights);
 		
 		//timeSensor.setValue(300);
-		//
-		
 
-		tempSensor.setValue(11);
-		while(true)
-		{
-			
-		}
 	}
 
 }
