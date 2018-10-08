@@ -9,13 +9,14 @@ public class MainController implements Observer {
 
 	private Blinds blinds;
 	private AirCon airCon;
-
-	public MainController(TimeSensor timeSensor, TemperatureSensor tempSensor, Blinds blinds, AirCon airCon) {
+	private Lights lights;
+	
+	public MainController(TimeSensor timeSensor, TemperatureSensor tempSensor, Blinds blinds, AirCon airCon, Lights lights) {
 		this.timeSensor = timeSensor;
 		this.tempSensor = tempSensor;
 		this.blinds = blinds;
 		this.airCon = airCon;
-
+		this.lights = lights;
 		tempSensor.addObserver(this);
 		timeSensor.addObserver(this);
 
@@ -38,7 +39,7 @@ public class MainController implements Observer {
 		return tempSensor.getValue();
 	}
 
-	/*
+	
 	public void setTimeController(TimeSensor timeSensor) {
 		this.timeSensor = timeSensor;
 		timeSensor.addObserver(this);
@@ -56,7 +57,6 @@ public class MainController implements Observer {
 	public void setAirConController(AirCon airCon) {
 		this.airCon = airCon;
 	}
-	*/
 	
 	public void setTime(int time){
 		timeSensor.setValue(time);
@@ -64,6 +64,14 @@ public class MainController implements Observer {
 	
 	public void setTemp(int temp) {
 		tempSensor.setValue(temp);
+	}
+	
+	public void setLights(boolean isOn) {
+		lights.setStatus(isOn);
+	}
+	
+	public boolean getLights() {
+		return lights.getStatus();
 	}
 	
 	@Override
