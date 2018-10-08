@@ -6,6 +6,7 @@ import java.util.Observer;
 public class MainController implements Observer {
 	private Observable timeSensor;
 	private Observable tempSensor;
+
 	private int currentTime;
 	private int currentTemp;
 
@@ -17,16 +18,32 @@ public class MainController implements Observer {
 		this.tempSensor = tempSensor;
 		this.blinds = blinds;
 		this.airCon = airCon;
-		
+
 		currentTime = timeSensor.getValue();
 		currentTemp = tempSensor.getValue();
-		
+
 		tempSensor.addObserver(this);
 		timeSensor.addObserver(this);
-		
+
 		printStatus();
 	}
+
+	public boolean getBlindStatus() {
+		return blinds.getStatus();
+	}
+
+	public int getAirConTemp() {
+		return airCon.getStatus();
+	}
+
+	public int getCurrentTime() {
+		return currentTime;
+	}
 	
+	public int getCurrentTemp() {
+		return currentTemp;
+	}
+
 	public void setTimeController(TimeSensor timeSensor) {
 		this.timeSensor = timeSensor;
 		currentTime = timeSensor.getValue();
@@ -51,23 +68,19 @@ public class MainController implements Observer {
 	public void update(Observable obs, Object arg) {
 		// TODO Auto-generated method stub
 		if (obs instanceof TemperatureSensor) {
-			TemperatureSensor currentSensor = (TemperatureSensor)obs;
+			TemperatureSensor currentSensor = (TemperatureSensor) obs;
 			currentTemp = currentSensor.getValue();
 			updateAirCon(currentTemp);
 		}
-		if (obs instanceof TimeSensor)
-		{
-			TimeSensor currentSensor = (TimeSensor)obs;
+		if (obs instanceof TimeSensor) {
+			TimeSensor currentSensor = (TimeSensor) obs;
 			currentTime = currentSensor.getValue();
 			updateBlinds(currentTime);
 		}
 		printStatus();
 
 	}
-	
-	
-	
-	
+
 	private void updateBlinds(int time) {
 		boolean blindsIsUp;
 		if (isDay(time)) {
@@ -105,6 +118,5 @@ public class MainController implements Observer {
 	private boolean isDay(int time) {
 		return time >= 600 && time <= 1800;
 	}
-
 
 }

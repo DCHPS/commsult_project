@@ -7,7 +7,7 @@ public class AirCon {
 		this.temperature = temperature;
 	}
 
-	public Object getStatus() {
+	public int getStatus() {
 		return temperature;
 	}
 
