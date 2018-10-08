@@ -10,6 +10,8 @@ public class MainClass extends Frame {
 	public MainClass(MainController mc) {
 		JFrame simpleGUI = new JFrame();
 		
+		JButton lamp = new JButton("Turn On Lights");
+		
 		simpleGUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		simpleGUI.setTitle("AC & Blinds for Days Boii V:");
 		simpleGUI.setSize(500, 600);
@@ -27,7 +29,7 @@ public class MainClass extends Frame {
 		
 		simplePanel.add(blind);
 		
-		simpleGUI.add(simplePanel);
+		simpleGUI.add(simplePanel, BorderLayout.NORTH);
 		simpleGUI.setVisible(true);
 		
 		
@@ -41,7 +43,7 @@ public class MainClass extends Frame {
 		AirCon airCon = new AirCon();
 		Lights lights = new Lights();
 		MainController mc = new MainController(timeSensor, tempSensor, blind, airCon, lights);
-		
+
 		MainClass og = new MainClass(mc);
 		
 		try {
