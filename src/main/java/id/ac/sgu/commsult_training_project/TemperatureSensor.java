@@ -1,6 +1,6 @@
 package id.ac.sgu.commsult_training_project;
 
-public class TemperatureSensor implements Sensor {
+public class TemperatureSensor extends Sensor {
 	private int temp;
 
 	public TemperatureSensor(int temp) {
@@ -9,6 +9,8 @@ public class TemperatureSensor implements Sensor {
 
 	public void setValue(int temp) {
 		this.temp = temp;
+		setChanged();
+		notifyObservers();
 
 	}
 

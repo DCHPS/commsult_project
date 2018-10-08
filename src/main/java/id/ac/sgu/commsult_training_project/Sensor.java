@@ -1,7 +1,14 @@
 package id.ac.sgu.commsult_training_project;
 
-public interface Sensor {
-	public void setValue(int newValue);
+import java.util.Observable;
 
-	public int getValue();
+public abstract class Sensor extends Observable {
+	public void setValue(int newValue) {
+		
+	}
+
+	public int getValue() {
+		return 0;
+		
+	}
 }
