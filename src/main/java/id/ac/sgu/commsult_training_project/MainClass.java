@@ -4,7 +4,7 @@ import javax.swing.*;
 
 public class MainClass extends Frame {
 	
-	public MainClass() {
+	public MainClass(MainController mc) {
 		JFrame simpleGUI = new JFrame();
 		
 		simpleGUI.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -14,7 +14,7 @@ public class MainClass extends Frame {
 		
 		JPanel simplePanel = new JPanel();
 		
-		JLabel temp = new JLabel("The temperature is: ");
+		JLabel temp = new JLabel("The AC Temperature is: ");
 		JLabel blind = new JLabel("The Blinds are: ");
 		
 		GridLayout myLayout = new GridLayout(2,0);
@@ -30,9 +30,14 @@ public class MainClass extends Frame {
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		//new MainController mc = new MainController();
 		
-		new MainClass();
+		TimeSensor timeSensor = new TimeSensor(30);
+		TemperatureSensor tempSensor = new TemperatureSensor(30);
+		Blinds blind = new Blinds();
+		AirCon airCon = new AirCon();
+		MainController mc = new MainController(timeSensor, tempSensor, blind, airCon);
+		
+		//new MainClass();
 	}
 
 }
