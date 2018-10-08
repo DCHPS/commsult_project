@@ -1,15 +1,9 @@
 package id.ac.sgu.commsult_training_project;
 
-import java.util.Date;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-
 public class SensorActorTest {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		SimpleDateFormat dateFormat = new SimpleDateFormat("HHmm");
-		Date date = new Date();
 		Blinds blinds = new Blinds();
 		System.out.println();
 		
@@ -20,9 +14,15 @@ public class SensorActorTest {
 		
 		MainController controller = new MainController(timeSensor,tempSensor,blinds,airCon);
 		
-		timeSensor.setValue(300);
-		tempSensor.setValue(11);
+		//timeSensor.setValue(300);
+		//
 		
+
+		tempSensor.setValue(11);
+		while(true)
+		{
+			
+		}
 	}
 
 }

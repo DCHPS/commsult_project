@@ -4,11 +4,8 @@ import java.util.Observable;
 import java.util.Observer;
 
 public class MainController implements Observer {
-	private Observable timeSensor;
-	private Observable tempSensor;
-
-	private int currentTime;
-	private int currentTemp;
+	private TimeSensor timeSensor;
+	private TemperatureSensor tempSensor;
 
 	private Blinds blinds;
 	private AirCon airCon;
@@ -18,9 +15,6 @@ public class MainController implements Observer {
 		this.tempSensor = tempSensor;
 		this.blinds = blinds;
 		this.airCon = airCon;
-
-		currentTime = timeSensor.getValue();
-		currentTemp = tempSensor.getValue();
 
 		tempSensor.addObserver(this);
 		timeSensor.addObserver(this);
@@ -37,16 +31,16 @@ public class MainController implements Observer {
 	}
 
 	public int getCurrentTime() {
-		return currentTime;
+		return timeSensor.getValue();
 	}
 	
 	public int getCurrentTemp() {
-		return currentTemp;
+		return tempSensor.getValue();
 	}
 
+	/*
 	public void setTimeController(TimeSensor timeSensor) {
 		this.timeSensor = timeSensor;
-		currentTime = timeSensor.getValue();
 		timeSensor.addObserver(this);
 	}
 
@@ -56,28 +50,31 @@ public class MainController implements Observer {
 
 	public void setTemperatureController(TemperatureSensor tempSensor) {
 		this.tempSensor = tempSensor;
-		currentTemp = tempSensor.getValue();
 		tempSensor.addObserver(this);
 	}
 
 	public void setAirConController(AirCon airCon) {
 		this.airCon = airCon;
 	}
-
+	*/
+	
+	public void setTime(int time){
+		timeSensor.setValue(time);
+	}
+	
+	public void setTemp(int temp) {
+		tempSensor.setValue(temp);
+	}
+	
 	@Override
 	public void update(Observable obs, Object arg) {
 		// TODO Auto-generated method stub
 		if (obs instanceof TemperatureSensor) {
-			TemperatureSensor currentSensor = (TemperatureSensor) obs;
-			currentTemp = currentSensor.getValue();
-			updateAirCon(currentTemp);
+			updateAirCon(tempSensor.getValue());
 		}
 		if (obs instanceof TimeSensor) {
-			TimeSensor currentSensor = (TimeSensor) obs;
-			currentTime = currentSensor.getValue();
-			updateBlinds(currentTime);
+			updateBlinds(timeSensor.getValue());
 		}
-		printStatus();
 
 	}
 
@@ -108,10 +105,10 @@ public class MainController implements Observer {
 
 	private void printStatus() {
 		// TODO Auto-generated method stub
-		System.out.println("Current temperature: " + currentTemp);
-		System.out.println("Current time: " + String.format("%04d", currentTime));
-		System.out.println("Blinds are up: " + blinds.getStatus());
-		System.out.println("Air conditioner temperature: " + airCon.getStatus());
+		System.out.println("Current temperature: " + getCurrentTemp());
+		System.out.println("Current time: " + String.format("%04d", getCurrentTime()));
+		System.out.println("Blinds are up: " + getBlindStatus());
+		System.out.println("Air conditioner temperature: " + getAirConTemp());
 		System.out.println();
 	}
 
