@@ -35,7 +35,6 @@ public class MainClass extends Frame {
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		boolean thereisNoGod = true;
 		TimeSensor timeSensor = new TimeSensor();
 		TemperatureSensor tempSensor = new TemperatureSensor(30);
 		Blinds blind = new Blinds();
@@ -44,27 +43,38 @@ public class MainClass extends Frame {
 		
 		MainClass og = new MainClass(mc);
 		
-		while (thereisNoGod)
-		{
-			setAll(mc);
+		try {
+			while (true)
+			{
+				setAll(mc);
+				Thread.sleep(1 * 1000);
+				
+			}
+		} catch (InterruptedException e) {
+			e.printStackTrace();
 		}
+		
 		
 	}
 	
+	private static Random generator = new Random();
+	
+	
 	private static void setAll(MainController mc) {
 		// TODO Auto-generated method stub
-		int currentTemperature = getRandom(100);
+		int currentTemperature = getRandom();
+		
 		int currentTime = mc.getCurrentTime();
 		
 		mc.setTime(currentTime);
 		mc.setTemp(currentTemperature);
 		
-		temp.setText("The AC Temperature is: "+mc.getAirConTemp());
-		blind.setText("The Blinds are up: "+mc.getBlindStatus());
+		temp.setText("The AC Temperature is: " + mc.getAirConTemp());
+		blind.setText("The Blinds are up: " + mc.getBlindStatus());
 	}
 	
-	public static int getRandom(int max){
-        return (int) (Math.random()*max);
-    }
+	static int getRandom() {
+	    return generator.nextInt()*5;
+	}
 
 }
