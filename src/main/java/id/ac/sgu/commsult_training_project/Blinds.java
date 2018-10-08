@@ -7,7 +7,7 @@ public class Blinds {
 		isUp = status;
 	}
 
-	public Object getStatus() {
+	public boolean getStatus() {
 		return isUp;
 	}
 
